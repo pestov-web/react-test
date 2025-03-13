@@ -100,6 +100,7 @@ const CityAutocomplete: React.FC<CityAutocompleteProps> = ({
     <div className={styles.container} ref={containerRef}>
       <input
         type="text"
+        aria-label="выберите город"
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
