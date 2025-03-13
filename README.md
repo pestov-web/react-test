@@ -46,8 +46,8 @@ app/
 1. **Клонирование репозитория:**
 
    ```bash
-   git clone <URL_репозитория>
-   cd <название_проекта>
+   git clone git@github.com:pestov-web/react-test.git
+   cd react-test
    ```
 
 2. **Установка зависимостей:**
@@ -60,10 +60,10 @@ app/
 
 3. **Настройка API ключа:**
 
-   Найдите в коде URL запроса к Geoapify API и замените `apiKey` на ваш собственный ключ:
+   переименуйте фаил .env.example в .env и замените `apiKey` на ваш собственный ключ:
 
-   ```tsx
-   https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=ВАШ_API_КЛЮЧ
+   ```
+   NEXT_PUBLIC_GEOAPIFY_API_KEY = ВАШ_API_КЛЮЧ;
    ```
 
 4. **Запуск проекта:**
