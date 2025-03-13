@@ -1,11 +1,12 @@
 module.exports = {
   apps: [
     {
-      name: 'dvgames-front',
-      port: '3050',
-      exec_mode: 'cluster',
-      instances: 'max',
-      script: 'pnpm start',
+      name: 'react-test',
+      script: 'node_modules/next/dist/bin/next',
+      args: 'start --port 3050',
+      env_production: {
+        NODE_ENV: 'production',
+      },
     },
   ],
 };
