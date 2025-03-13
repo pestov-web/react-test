@@ -11,7 +11,7 @@ const loadOptions = async (inputValue: string): Promise<CityOption[]> => {
   if (!inputValue) return [];
   try {
     const response = await fetch(
-      `https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=fcc59a9fedd644e980aed64487f6d078`
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY}`
     );
     const data = await response.json();
     return data.features.map((feature: any) => ({
