@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import CityAutocomplete, { CityOption } from './CityAutocomplete';
 import styles from './CityDistanceCalculator.module.css';
+
+// Простой расчет, для более точного можно использовать формулу Винсента /ulils/vincentyDistance
 import calculateDistance from '../utils/calculateDistance';
 
 const loadOptions = async (inputValue: string): Promise<CityOption[]> => {

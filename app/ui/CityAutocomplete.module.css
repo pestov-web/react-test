@@ -1,6 +1,6 @@
-.autocompleteContainer {
+.container {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .input {
@@ -13,7 +13,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
+  color: var(--foreground);
   padding: 0.5rem;
   font-size: 0.9rem;
 }
@@ -23,8 +23,8 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: var(--background);
+  border: 1px solid var(--border);
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
@@ -39,5 +39,5 @@
 }
 
 .suggestionItem:hover {
-  background-color: #f0f0f0;
+  background-color: var(--result-hover);
 }

@@ -27,15 +27,14 @@ const CityAutocomplete: React.FC<CityAutocompleteProps> = ({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // Флаг, который блокирует запрос при выборе варианта
   const [selectionMade, setSelectionMade] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  // Простой кеш: ключ – введённый текст, значение – полученные варианты
+  // Простой кеш
   const cacheRef = useRef<{ [key: string]: CityOption[] }>({});
 
   useEffect(() => {
-    // Если поле пустое или пользователь только что выбрал вариант – не загружаем подсказки
+    // не загружаем подсказки
     if (inputValue.trim() === '' || selectionMade) {
       setSuggestions([]);
       setShowSuggestions(false);
@@ -43,7 +42,7 @@ const CityAutocomplete: React.FC<CityAutocompleteProps> = ({
     }
     setError(null);
     const handler = setTimeout(() => {
-      // Если для данного запроса есть кеш – используем его
+      // кеш
       if (cacheRef.current[inputValue]) {
         setSuggestions(cacheRef.current[inputValue]);
         setShowSuggestions(true);
@@ -77,13 +76,13 @@ const CityAutocomplete: React.FC<CityAutocompleteProps> = ({
     onSelect(option);
   };
 
-  // При изменении текста снимаем флаг выбора, чтобы можно было выполнить новый запрос
+  // снимаем флаг выбора
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setSelectionMade(false);
   };
 
-  // Скрываем список подсказок при клике вне компонента
+  // Скрываем список подсказок
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -98,14 +97,14 @@ const CityAutocomplete: React.FC<CityAutocompleteProps> = ({
   }, []);
 
   return (
-    <div className={styles.autocompleteContainer} ref={containerRef}>
+    <div className={styles.container} ref={containerRef}>
       <input
         type="text"
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
         onFocus={() => {
-          // Если пользователь не выбрал вариант, при фокусе показываем подсказки (если есть)
+          // при фокусе показываем подсказки (если есть)
           if (!selectionMade && suggestions.length > 0) {
             setShowSuggestions(true);
           }
