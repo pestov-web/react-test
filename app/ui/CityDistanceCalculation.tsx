@@ -7,6 +7,14 @@ import styles from './CityDistanceCalculator.module.css';
 // Простой расчет, для более точного можно использовать формулу Винсента /ulils/vincentyDistance
 import calculateDistance from '../utils/calculateDistance';
 
+interface Feature {
+  properties: {
+    formatted: string;
+    lat: number;
+    lon: number;
+  };
+}
+
 const loadOptions = async (inputValue: string): Promise<CityOption[]> => {
   if (!inputValue) return [];
   try {
@@ -14,7 +22,7 @@ const loadOptions = async (inputValue: string): Promise<CityOption[]> => {
       `https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY}`
     );
     const data = await response.json();
-    return data.features.map((feature: any) => ({
+    return data.features.map((feature: Feature) => ({
       label: feature.properties.formatted,
       value: {
         lat: feature.properties.lat,
