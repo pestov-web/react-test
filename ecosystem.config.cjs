@@ -5,7 +5,7 @@ module.exports = {
       port: '3050',
       exec_mode: 'cluster',
       instances: 'max',
-      script: 'next start',
+      script: 'pnpm start',
     },
   ],
 };
