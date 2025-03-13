@@ -46,7 +46,7 @@ app/
 1. **Клонирование репозитория:**
 
    ```bash
-   git clone git@github.com:pestov-web/react-test.git
+   git clone https://github.com/pestov-web/react-test.git
    cd react-test
    ```
 
