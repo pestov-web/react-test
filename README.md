@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# City Distance Calculator
 
-## Getting Started
+Данный проект представляет собой тестовое задание для вычисления расстояния «по прямой» между двумя городами. Проект реализован с использованием Next.js, TypeScript и React, и демонстрирует создание легковесного компонента автодополнения на базе нативного решения с кешированием и дебаунсом.
 
-First, run the development server:
+## Функциональность
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Автодополнение городов:**  
+  При вводе названия города выполняется запрос к [Geoapify API](https://www.geoapify.com/) для получения подсказок.
+
+- **Расчет расстояния:**  
+  Вычисление расстояния между двумя выбранными городами осуществляется по формуле гаверсинусов с округлением результата до ближайших 10 км.
+
+- **Оптимизация запросов:**  
+  Реализован дебаунс (300 мс) для уменьшения количества запросов, а также кеширование результатов запросов для повышения производительности.
+
+- **Обработка ошибок:**  
+  При возникновении ошибок загрузки данных выводится сообщение об ошибке.
+
+## Технологии
+
+- **Next.js** — фреймворк для серверного рендеринга и создания React-приложений.
+- **React** — библиотека для построения пользовательских интерфейсов.
+- **TypeScript** — надстройка над JavaScript, обеспечивающая статическую типизацию.
+- **CSS Modules** — локализованное оформление компонентов.
+- **Geoapify API** — сторонний сервис для автодополнения городов и получения геокоординат.
+
+## Структура проекта
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+app/
+├── page.tsx
+├── ui/
+│   ├── CityAutocomplete.module.css
+│   ├── CityAutocomplete.tsx
+│   ├── CityDistanceCalculation.tsx
+│   └── CityDistanceCalculator.module.css
+└── utils/
+   ├── calculateDistance.ts
+   └── vincentyDistance.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Установка и запуск
 
-## Learn More
+1. **Клонирование репозитория:**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone <URL_репозитория>
+   cd <название_проекта>
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+````
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Установка зависимостей:**
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   # или
+   pnpm i
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Настройка API ключа:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Найдите в коде URL запроса к Geoapify API и замените `apiKey` на ваш собственный ключ:
+
+   ```tsx
+   https://api.geoapify.com/v1/geocode/autocomplete?text=${inputValue}&apiKey=ВАШ_API_КЛЮЧ
+   ```
+
+4. **Запуск проекта:**
+
+   Для запуска проекта в режиме разработки выполните:
+
+   ```bash
+   npm run dev
+   # или
+   pnpm dev
+   ```
+
+   Откройте браузер и перейдите по адресу [http://localhost:3000](http://localhost:3000).
+
+
+
+````
